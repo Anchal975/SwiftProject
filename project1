@@ -1,0 +1,522 @@
+
+import Foundation
+
+class Bank{
+
+    var adminID:String
+
+    var adminPass:String
+
+    var userID1:String
+
+    var userPass1:String
+
+    var userID2:String
+
+    var userPass2:String
+
+    var userDetails = [String]()
+
+    var userDetails2 = [String]()
+
+    var bal:Int
+
+    var bal2:Int
+
+    var exit:Int
+
+    var user:Int
+
+    var userIDS:Int
+
+   
+
+     
+
+    init() {
+
+        adminID="admin"
+
+        adminPass="password"
+
+        userID1="user1"
+
+        userPass1="password1"
+
+        userID2="user2"
+
+        userPass2="password2"
+
+        userDetails=["Anchal","101","9577859655","Hoshiarpur","10000"]
+
+        userDetails2=["Amit","102","8596748596","Amritsar","11000"]
+
+        bal=10000
+
+        bal2=11000
+
+        exit=1
+
+        user=1
+
+        userIDS=102
+
+        
+
+    }
+
+//selection of user type
+
+    func selectuserType(){
+
+        print("Select User Type")
+
+        print("1.Admin")
+
+        print("2.Customer")
+
+        let selecttype=readLine()
+
+        var type=Int(selecttype!)
+
+        if (type!)==1{
+
+            adminlogin()
+
+            
+
+        }else if (type!)==2{
+
+            userLogin()
+
+        }else{
+
+            print("Invalid Input")
+
+        }
+
+        
+
+    }
+
+//logging into admin portal
+
+    func adminlogin(){
+
+        print("Admin ID : ")
+
+        let adminid=readLine()
+
+        var id=String(adminid!)
+
+        print("Password : ")
+
+        let pss=readLine()
+
+        var pass=String(pss!)
+
+        if (id)==adminID && (pss!)==adminPass {
+
+            while exit==1 {
+
+        print("1.Create Account")
+
+        print("2.Logout")
+
+        let ch=readLine()
+
+        var s=Int(ch!)
+
+        if (s!)==1{
+
+            createAcc()
+
+            
+
+        }else if (s!)==2{
+
+            exit=0
+
+            selectuserType()
+
+        }
+
+        else{
+
+            print("Invalid Input")
+
+        }
+
+        
+
+        }
+
+        }
+
+        else{
+
+            print("Id and Password is incorrect")
+
+        }
+
+        
+
+        
+
+    }
+
+//login into user portal
+
+    func userLogin(){
+
+        
+
+        print("User ID : ")
+
+        let userid=readLine()
+
+        var uid=String(userid!)
+
+        print("Password : ")
+
+        let upss=readLine()
+
+        var upass=String(upss!)
+
+        if (uid)==userID1 && (upss!)==userPass1 {
+
+            user=1
+
+            userDetail()
+
+        
+
+        }else if (uid)==userID2 && (upss!)==userPass2{
+
+            user=2
+
+            userDetail()
+
+             
+
+        }else{
+
+            print("Enter correct user id and password")
+
+            
+
+        }
+
+        
+
+    }
+
+//creation of account
+
+    func createAcc(){
+
+        print("Enter user Details")
+
+        print("Enter Name : ")
+
+        let name=readLine()
+
+        var name1=String(name!)
+
+        print("Enter mobile number : ")
+
+        let mo=readLine()
+
+        var mo1=Int(mo!)
+
+        print("Enter city : ")
+
+        let city=readLine()
+
+        var city1=String(city!)
+
+        print("Enter amount you want to deposit :")
+
+        let acc=readLine()
+
+        var ammt=Int(acc!)
+
+        if name1.isEmpty || (mo1!)==0 || city1.isEmpty || (ammt!)==0 {
+
+            print("All fields are mandatory..")
+
+        }else{
+
+        print("Account created scessfully....")
+
+        print("Your account number is : \((userIDS)+1)")
+
+            userIDS+=1
+
+        }
+
+    }
+
+//finding different type of user details
+
+    func userDetail() {
+
+         while exit==1 {
+
+        print("Select from menu : ")
+
+        print("1.User Details.")
+
+        print("2.Display current Balance.")
+
+        print("3.Deposit Money")
+
+        print("4.Draw Money.")
+
+        print("5.Transfer Money ")
+
+        print("6.Pay Bills")
+
+        let cho=readLine()
+
+        var chh=Int(cho!)
+
+        switch  chh!{
+
+            case 1:
+
+            printDetails()
+
+            break
+
+        case 2:
+
+            displayBal()
+
+            break
+
+        case 3:
+
+            depositMoney()
+
+            break
+
+        case 4:
+
+            drawMoney()
+
+            break
+
+        case 5:
+
+            transfer()
+
+            break
+
+        case 6:
+
+            paybills()
+
+            break
+
+        case 0:
+
+            exit=0
+
+            break
+
+        default:
+
+            print("Invalid Details")
+
+        }
+
+        }
+
+    }
+
+//printing of user details
+
+    func printDetails(){
+
+        if user==1 {
+
+            print("Name : \(userDetails[0])")
+
+            print("Account number : \(userDetails[1])")
+
+            print("Mobile Number : \(userDetails[2])")
+
+            print("Address : \(userDetails[3])")
+
+            print("Balance : \(userDetails[4])")
+
+            
+
+        }else if user==2{
+
+            print("Name : \(userDetails2[0])")
+
+            print("Account number : \(userDetails2[1])")
+
+            print("Mobile Number : \(userDetails2[2])")
+
+            print("Address : \(userDetails2[3])")
+
+            print("Balance : \(userDetails2[4])")
+
+                    }
+
+        
+
+    }
+
+//displaying of balance
+
+    func displayBal(){
+
+        if user==1 {
+
+        print("Current Balance is : \(bal)")
+
+        }else if user==2{
+
+            print("Current Balance is : \(bal2)")
+
+        }
+
+        }
+
+//money to be deposited
+
+    func depositMoney(){
+
+      print("Enter the amount you want to deposit")
+
+        let de=readLine()
+
+        var deposit=Int(de!)
+
+        if (deposit!)>0{
+
+            if user==1 {
+
+            bal+=deposit!
+
+            }else if user == 2{
+
+                bal2+=deposit!
+
+            }
+
+        }else{
+
+            print("Invalid Input")
+
+        }
+
+    }
+
+//money to be drawn
+
+    func drawMoney(){
+
+        print("Enter the amount you want to withdraw")
+
+        let wi=readLine()
+
+        var with=Int(wi!)
+
+        if (with!)>0{
+
+            if user==1 {
+
+            bal-=with!
+
+            }else if user==2{
+
+                bal2-=with!
+
+            }
+
+        }else{
+
+            print("Invalid Input")
+
+        }
+
+    }
+
+//transferring of money
+
+    func transfer() {
+
+        print("Enter the transferee's Account number :")
+
+        let acNo=readLine()
+
+        var acno=Int(acNo!)
+
+        print("Enter the amount :")
+
+        let am=readLine()
+
+        var amm=Int(am!)
+
+        if user==1{
+
+        if(acno!)==102 && (amm!)>0{
+
+            bal-=amm!
+
+            bal2+=amm!
+
+            print("Transfer successfully...")
+
+            
+
+        }else{
+
+            print("enter correct details.")
+
+        }
+
+        }
+
+        else if user==2{
+
+            if(acno!)==101 && (amm!)>0{
+
+                bal2-=amm!
+
+                bal+=amm!
+
+                print("Transfer successfully...")
+
+                
+
+            }else{
+
+                print("enter correct details.")
+
+            }
+
+        }
+
+    }
+
+    //payment of bills
+
+    func paybills(){
+
+        
+
+    }
+
+ }
+
+ 
+
+var b1=Bank()
+
+b1.selectuserType()
